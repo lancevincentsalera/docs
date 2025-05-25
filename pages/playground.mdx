@@ -1,4 +1,4 @@
-import PlaygroundRunner from '../components/playground'
+import { Callout } from "nextra-theme-docs";
 
 # Playground
 
@@ -7,4 +7,10 @@ import PlaygroundRunner from '../components/playground'
   By default we’re pointing at <code>http://localhost:50051</code>—if your node lives elsewhere, update the <code>endpoint</code> prop on each tab below.
 </Callout>
 
-<PlaygroundRunner />
+<div style={{ height: '80vh', borderRadius: '0.75rem', overflow: 'hidden', marginTop: '60px' }}>
+    <iframe
+        src={"/grpcui"}
+        title={`gRPC Playground`}
+        className="w-full h-[80vh] border-0"
+    />
+</div>

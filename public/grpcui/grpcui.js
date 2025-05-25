@@ -1,8 +1,16 @@
 window.addEventListener("DOMContentLoaded", () => {
-  const params = new URLSearchParams(location.search);
-  const svc = params.get("service");
-  const mtd = params.get("method");
+  const selection = { service: "", method: "" }
 
+  try {
+    const raw = localStorage.getItem("grpcui-selection")
+    if (raw) {
+      Object.assign(selection, JSON.parse(raw))
+    }
+  } catch {
+    console.warn("Could not parse grpcui-selection from localStorage")
+  }
+
+  const { service: svc, method: mtd } = selection;
   if (!svc || !mtd) return;
 
   const svcEl = document.getElementById("grpc-service");

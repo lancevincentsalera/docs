@@ -2,13 +2,16 @@ import Link from "next/link";
 import React from "react";
 
 export function Button(props: { service: string; method: string }) {
+    const handleClick = () => {
+        if (typeof window !== 'undefined') {
+            window.localStorage.setItem('grpcui-selection', JSON.stringify(props))
+        }
+    }
     return (
         <div className="inline-flex ml-4 self-end">
             <Link
-                href={{
-                    pathname: "/playground",
-                    query: { service: props.service, method: props.method },
-                }}
+                href={"/playground"}
+                onClick={handleClick}
                 className="inline-flex items-center text-center gap-2 bg-gradient-to-tl from-emerald-600 to-cyan-600 hover:from-emerald-300 hover:to-cyan-500 text-white text-sm font-medium rounded-md border border-transparent focus:outline-none focus:ring-2 focus:ring-blue-600 focus:ring-offset-2 focus:ring-offset-white dark:focus:ring-offset-gray-800 py-1.5 px-2"
             >
 
